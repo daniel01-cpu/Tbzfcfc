@@ -1,4 +1,4 @@
-from matplotlib import cm
+#from matplotlib import cm
 import streamlit as st
 from scipy.integrate import quad
 import matplotlib as mpl
@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 mpl.use("agg")
 
-from matplotlib.backends.backend_agg import RendererAgg
-_lock = RendererAgg.lock
+#from matplotlib.backends.backend_agg import RendererAgg
+#_lock = RendererAgg.lock
 
 
 # -- Set page config
