@@ -284,14 +284,14 @@ def config_sidebar() -> None:
     with st.sidebar:
         with st.form("my_form"):
             st.info("## Insert "+r"$\tau(T)$"+" parameters")
-            tau0 = st.text_input(r"$\tau_{0}$"+" (s)",value="")
-            Ueff = st.text_input(r"$U{eff}$"+" (K)",value="")
-            C = st.text_input("C "+r"$(K^{-n}/s)$",value="")
-            n = st.text_input("n",value="")
-            tauqt = st.text_input(r"$\tau_{QT}$"+" (s)",value="")
-            rh = st.text_input(r"$R_{H}$"+" (K/min)",value=2.)
-            ln = st.text_input("Ln",value="Dy")
-            ymax = st.text_input("ymax (maximum value for the y axis)",value=15.)
+            tau0 = st.text_area(r"$\tau_{0}$"+" (s)",value="")
+            Ueff = st.text_area(r"$U{eff}$"+" (K)",value="")
+            C = st.text_area("C "+r"$(K^{-n}/s)$",value="")
+            n = st.text_area("n",value="")
+            tauqt = st.text_area(r"$\tau_{QT}$"+" (s)",value="")
+            rh = st.text_area(r"$R_{H}$"+" (K/min)",value=2.)
+            ln = st.text_area("Ln",value="Dy")
+            ymax = st.text_area("ymax (maximum value for the y axis)",value=15.)
             submitted = st.form_submit_button("Submit",type="primary",use_container_width=True)
         return submitted,tau0,Ueff,C,n,tauqt,rh,ln,ymax
 
