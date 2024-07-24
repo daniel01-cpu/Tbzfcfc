@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 mpl.use("agg")
 
-#from matplotlib.backends.backend_agg import RendererAgg
-#_lock = RendererAgg.lock
+from matplotlib.backends.backend_agg import RendererAgg
+_lock = RendererAgg.lock
 
 
 # -- Set page config
@@ -36,7 +36,10 @@ def simula_zfcfc_TRO(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     plt.xlabel(r"$T$"+" "+r"$(K)$",fontsize=18)
     plt.yticks(fontsize=14)
     plt.xticks(fontsize=14)
-    plt.xlim(2,tb*3/2)
+    if tb > 10.:
+        plt.xlim(2,tb*3/2)
+    else:
+        plt.xlim(2,15)
     plt.ylim(-0.1,ymax)
     st.pyplot(fig)
     return(xt_Xzfc_T,xt_Xfc_X,xt_Xzfc_X)
@@ -61,7 +64,10 @@ def simula_zfcfc_RO(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     plt.xlabel(r"$T$"+" "+r"$(K)$",fontsize=18)
     plt.yticks(fontsize=14)
     plt.xticks(fontsize=14)
-    plt.xlim(2,tb*3/2)
+    if tb > 10.:
+        plt.xlim(2,tb*3/2)
+    else:
+        plt.xlim(2,15)
     plt.ylim(-0.1,ymax)
     st.pyplot(fig)
     return(xt_Xzfc_T,xt_Xfc_X,xt_Xzfc_X)
@@ -86,7 +92,10 @@ def simula_zfcfc_TO(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     plt.xlabel(r"$T$"+" "+r"$(K)$",fontsize=18)
     plt.yticks(fontsize=14)
     plt.xticks(fontsize=14)
-    plt.xlim(2,tb*3/2)
+    if tb > 10.:
+        plt.xlim(2,tb*3/2)
+    else:
+        plt.xlim(2,15)
     plt.ylim(-0.1,ymax)
     st.pyplot(fig)
     return(xt_Xzfc_T,xt_Xfc_X,xt_Xzfc_X)
@@ -111,7 +120,10 @@ def simula_zfcfc_TR(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     plt.xlabel(r"$T$"+" "+r"$(K)$",fontsize=18)
     plt.yticks(fontsize=14)
     plt.xticks(fontsize=14)
-    plt.xlim(2,tb*3/2)
+    if tb > 10.:
+        plt.xlim(2,tb*3/2)
+    else:
+        plt.xlim(2,15)
     plt.ylim(-0.1,ymax)
     st.pyplot(fig)
     return(xt_Xzfc_T,xt_Xfc_X,xt_Xzfc_X)
@@ -136,7 +148,10 @@ def simula_zfcfc_R(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     plt.xlabel(r"$T$"+" "+r"$(K)$",fontsize=18)
     plt.yticks(fontsize=14)
     plt.xticks(fontsize=14)
-    plt.xlim(2,tb*3/2)
+    if tb > 10.:
+        plt.xlim(2,tb*3/2)
+    else:
+        plt.xlim(2,15)
     plt.ylim(-0.1,ymax)
     st.pyplot(fig)
     return(xt_Xzfc_T,xt_Xfc_X,xt_Xzfc_X)
@@ -161,7 +176,10 @@ def simula_zfcfc_O(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     plt.xlabel(r"$T$"+" "+r"$(K)$",fontsize=18)
     plt.yticks(fontsize=14)
     plt.xticks(fontsize=14)
-    plt.xlim(2,tb*3/2)
+    if tb > 10.:
+        plt.xlim(2,tb*3/2)
+    else:
+        plt.xlim(2,15)
     plt.ylim(-0.1,ymax)
     st.pyplot(fig)
     return(xt_Xzfc_T,xt_Xfc_X,xt_Xzfc_X)
@@ -282,16 +300,16 @@ def integra_rate_func_O(temp0,tempf,tor,ueff,c,n,tqt):
 
 def config_sidebar() -> None:
     with st.sidebar:
-        with st.form("my_form"):
+        with st.form("my_form",border=False):
             st.info("## Insert "+r"$\tau(T)$"+" parameters")
-            tau0 = st.text_area(r"$\tau_{0}$"+" (s)",value="",height=5)
-            Ueff = st.text_area(r"$U{eff}$"+" (K)",value="",height=5)
-            C = st.text_area("C "+r"$(K^{-n}/s)$",value="",height=5)
-            n = st.text_area("n",value="",height=5)
-            tauqt = st.text_area(r"$\tau_{QT}$"+" (s)",value="",height=5)
-            rh = st.text_area(r"$R_{H}$"+" (K/min)",value=2.,height=5)
-            ln = st.text_area("Ln",value="Dy",height=5)
-            ymax = st.text_area("ymax (maximum value for the y axis)",value=15.,height=5)
+            tau0 = st.text_input(r"$\tau_{0}$"+" (s) [typical values 1.e-7 - 1.e-12]",value="")
+            Ueff = st.text_input(r"$U{eff}$"+" (K) [typical values 10 - 2500]",value="")
+            C = st.text_input("C "+r"$(K^{-n}/s)$"+" [typical values 1.e-8 - 1.e2]",value="")
+            n = st.text_input("n"+" [typical values 2 - 9]",value="")
+            tauqt = st.text_input(r"$\tau_{QT}$"+" (s) [typical values 1.e-4 - 1.e4]",value="")
+            rh = st.text_input(r"$R_{H}$"+" (K/min)",value=2.)
+            ln = st.text_input("Ln",value="Dy")
+            ymax = st.text_input("ymax (maximum value for the y axis)",value=15.)
             submitted = st.form_submit_button("Submit",type="primary",use_container_width=True)
         return submitted,tau0,Ueff,C,n,tauqt,rh,ln,ymax
 
@@ -388,6 +406,7 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
                 mech = "O"
             if mech == "none":
                 st.write("not enough parameters for O+R+T, O+R, O+T, R+T, O or R")
+                tb = -2
             elif mech == "TRO":
                 tb = find_Tb_TRO(1.,300.,0.1,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TRO(1.,300.,0.1,1.,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.,fixXT,tb,ymax)
@@ -407,15 +426,21 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
                 tb = find_Tb_O(1.,300.,0.1,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.)
                 data = simula_zfcfc_O(1.,300.,0.1,1.,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.,fixXT,tb,ymax)
             if tb == 0:
-                st.write(r"$T_{B-ZFC/FC}$"+" < 2 K")
+                st.write(r"$T_{B-ZFC/FC}$"+" < 1.1 K")
+                data = []
             elif tb == -1:
                 st.write(r"$T_{B-ZFC/FC}$"+" > 300 K")
+                data = []
+            elif tb == -2:
+                st.write(r"$T_{B-ZFC/FC}$"+" is not calculated")
+                data = []
             else:
                 st.write(r"$T_{B-ZFC/FC}$"+" = "+"{:5.1f}".format(tb)+" K")
             data1 = "T X_FC X_ZFC\n"
-            for i in range(len(data[0])):
-                data1 += str(data[0][i])+" "+str(data[1][i])+" "+str(data[2][i])+"\n"
-            st.download_button(label="Download Data",data=data1,file_name="ZFCFCdata.txt")
+            if len(data) != 0:
+                for i in range(len(data[0])):
+                    data1 += str(data[0][i])+" "+str(data[1][i])+" "+str(data[2][i])+"\n"
+                st.download_button(label="Download Data",data=data1,file_name="ZFCFCdata.txt")
             data1 = ""
     else:
         pass
