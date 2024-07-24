@@ -1,4 +1,3 @@
-from matplotlib import cm
 import streamlit as st
 from scipy.integrate import quad
 import matplotlib as mpl
