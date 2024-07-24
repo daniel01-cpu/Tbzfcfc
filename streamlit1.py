@@ -408,22 +408,22 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
                 st.write("not enough parameters for O+R+T, O+R, O+T, R+T, O or R")
                 tb = -2
             elif mech == "TRO":
-                tb = find_Tb_TRO(1.,300.,0.1,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.)
+                tb = find_Tb_TRO(1.,30000.,0.1,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TRO(1.,300.,0.1,1.,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.,fixXT,tb,ymax)
             elif mech == "RO":
-                tb = find_Tb_RO(1.,300.,0.1,float(tau0),float(Ueff),float(C),float(n),tauqt,float(rh)/60.)
+                tb = find_Tb_RO(1.,30000.,0.1,float(tau0),float(Ueff),float(C),float(n),tauqt,float(rh)/60.)
                 data = simula_zfcfc_RO(1.,300.,0.1,1.,float(tau0),float(Ueff),float(C),float(n),tauqt,float(rh)/60.,fixXT,tb,ymax)
             elif mech == "TO":
-                tb = find_Tb_TO(1.,300.,0.1,float(tau0),float(Ueff),C,n,float(tauqt),float(rh)/60.)
+                tb = find_Tb_TO(1.,30000.,0.1,float(tau0),float(Ueff),C,n,float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TO(1.,300.,0.1,1.,float(tau0),float(Ueff),C,n,float(tauqt),float(rh)/60.,fixXT,tb,ymax)
             elif mech == "TR":
-                tb = find_Tb_TR(1.,300.,0.1,tau0,Ueff,float(C),float(n),float(tauqt),float(rh)/60.)
+                tb = find_Tb_TR(1.,30000.,0.1,tau0,Ueff,float(C),float(n),float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TR(1.,300.,0.1,1.,tau0,Ueff,float(C),float(n),float(tauqt),float(rh)/60.,fixXT,tb,ymax)
             elif mech == "R":
-                tb = find_Tb_R(1.,300.,0.1,tau0,Ueff,float(C),float(n),tauqt,float(rh)/60.)
+                tb = find_Tb_R(1.,30000.,0.1,tau0,Ueff,float(C),float(n),tauqt,float(rh)/60.)
                 data = simula_zfcfc_R(1.,300.,0.1,1.,tau0,Ueff,float(C),float(n),tauqt,float(rh)/60.,fixXT,tb,ymax)
             elif mech == "O":
-                tb = find_Tb_O(1.,300.,0.1,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.)
+                tb = find_Tb_O(1.,30000.,0.1,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.)
                 data = simula_zfcfc_O(1.,300.,0.1,1.,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.,fixXT,tb,ymax)
             if tb == 0:
                 st.write(r"$T_{B-ZFC/FC}$"+" < 1.1 K")
