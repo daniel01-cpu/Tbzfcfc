@@ -189,7 +189,7 @@ def find_Tb_TRO(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
         # l.h.s
         lhs = 1.-np.exp(-1./rh*integra_rate_func_TRO(tini,i,tor,ueff,c,n,tqt))
         rhs = i/(i+rh/rate_func_TRO(i,tor,ueff,c,n,tqt))
-        if lhs >= rhs:
+        if (lhs >= rhs)and(rhs > 0.5):
             if i == tini+dt:
                 return 0
             else:
@@ -201,7 +201,7 @@ def find_Tb_RO(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
         # l.h.s
         lhs = 1.-np.exp(-1./rh*integra_rate_func_RO(tini,i,tor,ueff,c,n,tqt))
         rhs = i/(i+rh/rate_func_RO(i,tor,ueff,c,n,tqt))
-        if lhs >= rhs:
+        if (lhs >= rhs)and(rhs > 0.5):
             if i == tini+dt:
                 return 0
             else:
@@ -213,7 +213,7 @@ def find_Tb_TO(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
         # l.h.s
         lhs = 1.-np.exp(-1./rh*integra_rate_func_TO(tini,i,tor,ueff,c,n,tqt))
         rhs = i/(i+rh/rate_func_TO(i,tor,ueff,c,n,tqt))
-        if lhs >= rhs:
+        if (lhs >= rhs)and(rhs > 0.5):
             if i == tini+dt:
                 return 0
             else:
@@ -225,7 +225,7 @@ def find_Tb_TR(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
         # l.h.s
         lhs = 1.-np.exp(-1./rh*integra_rate_func_TR(tini,i,tor,ueff,c,n,tqt))
         rhs = i/(i+rh/rate_func_TR(i,tor,ueff,c,n,tqt))
-        if lhs >= rhs:
+        if (lhs >= rhs)and(rhs > 0.5):
             if i == tini+dt:
                 return 0
             else:
@@ -237,7 +237,7 @@ def find_Tb_R(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
         # l.h.s
         lhs = 1.-np.exp(-1./rh*integra_rate_func_R(tini,i,tor,ueff,c,n,tqt))
         rhs = i/(i+rh/rate_func_R(i,tor,ueff,c,n,tqt))
-        if lhs >= rhs:
+        if (lhs >= rhs)and(rhs > 0.5):
             if i == tini+dt:
                 return 0
             else:
@@ -249,7 +249,7 @@ def find_Tb_O(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
         # l.h.s
         lhs = 1.-np.exp(-1./rh*integra_rate_func_O(tini,i,tor,ueff,c,n,tqt))
         rhs = i/(i+rh/rate_func_O(i,tor,ueff,c,n,tqt))
-        if lhs >= rhs:
+        if (lhs >= rhs)and(rhs > 0.5):
             if i == tini+dt:
                 return 0
             else:
