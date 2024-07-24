@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 mpl.use("agg")
 
-from matplotlib.backends.backend_agg import RendererAgg
-_lock = RendererAgg.lock
+#from matplotlib.backends.backend_agg import RendererAgg
+#_lock = RendererAgg.lock
 
 
 # -- Set page config
