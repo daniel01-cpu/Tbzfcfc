@@ -14,7 +14,7 @@ mpl.use("agg")
 apptitle = 'TB-ZFC/FC'
 
 st.set_page_config(page_title=apptitle, page_icon=":magnet:")
-st.title(r'$T_{B-ZFC/FC}$'+ " calculation according to DOI:10.xxxx/xxxxx")
+st.title(r'$T_{B-ZFC/FC}$'+ " calculation according to DOI:10.xxxx/xxxxx with "+r"$\tau^{-1}=1/\tau_{0}*exp(-U_{eff}/k_{B}T)+C*T^n+1/\tau_{QT}$")
 
 def simula_zfcfc_TRO(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
     fig, ax1 = plt.subplots()
@@ -326,19 +326,19 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
         try:
             if float(tau0) > 0.:
                 tau0OK = True
-                st.write("tau0 = "+str(tau0)+ " s")
+                st.write(r"$\tau_{0}$"+" = "+str(tau0)+ " s")
             else:
-                st.write("tau0 = ----")
+                st.write(r"$\tau_{0}$"+" = ----")
         except:
-            st.write("tau0 = ----")
+            st.write(r"$\tau_{0}$"+" = ----")
         try:
             if float(Ueff) > 0.:
                 UeffOK = True
-                st.write("Ueff = "+str(Ueff)+ " K")
+                st.write(r"$U_{eff}$"+" = "+str(Ueff)+ " K")
             else:
-                st.write("Ueff = ----")
+                st.write(r"$U_{eff}$"+" = ----")
         except:
-            st.write("Ueff = ----")
+            st.write(r"$U_{eff}$"+" = ----")
         try:
             if float(C) > 0.:
                 COK = True
@@ -358,11 +358,11 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
         try:
             if float(tauqt) > 0.:
                 tauqtOK = True
-                st.write("tauqt = "+str(tauqt)+ " s")
+                st.write(r"$\tau_{QT}$"+" = "+str(tauqt)+ " s")
             else:
-                st.write("tauqt = ----")
+                st.write(r"$\tau_{QT}$"+" = ----")
         except:
-            st.write("tauqt = ----")
+            st.write(r"$\tau_{QT}$"+" = ----")
         try:
             if float(rh) > 0.:
                 rhOK = True
