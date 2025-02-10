@@ -257,6 +257,66 @@ def find_Tb_O(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
                 return i
     return -1
 
+def find_Tb100_TRO(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
+    if 1./rate_func_TRO(tini+dt,tor,ueff,c,n,tqt) < 100.:
+        return 0
+    else:
+        for i in np.arange(tini+dt,tmax,dt):
+            taui = 1./rate_func_TRO(i,tor,ueff,c,n,tqt)
+            if taui < 100.:
+                return i-dt
+        return -1
+
+def find_Tb100_RO(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
+    if 1./rate_func_RO(tini+dt,tor,ueff,c,n,tqt) < 100.:
+        return 0
+    else:
+        for i in np.arange(tini+dt,tmax,dt):
+            taui = 1./rate_func_RO(i,tor,ueff,c,n,tqt)
+            if taui < 100.:
+                return i-dt
+        return -1
+
+def find_Tb100_TO(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
+    if 1./rate_func_TO(tini+dt,tor,ueff,c,n,tqt) < 100.:
+        return 0
+    else:
+        for i in np.arange(tini+dt,tmax,dt):
+            taui = 1./rate_func_TO(i,tor,ueff,c,n,tqt)
+            if taui < 100.:
+                return i-dt
+        return -1
+
+def find_Tb100_TR(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
+    if 1./rate_func_TR(tini+dt,tor,ueff,c,n,tqt) < 100.:
+        return 0
+    else:
+        for i in np.arange(tini+dt,tmax,dt):
+            taui = 1./rate_func_TR(i,tor,ueff,c,n,tqt)
+            if taui < 100.:
+                return i-dt
+        return -1
+
+def find_Tb100_R(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
+    if 1./rate_func_R(tini+dt,tor,ueff,c,n,tqt) < 100.:
+        return 0
+    else:
+        for i in np.arange(tini+dt,tmax,dt):
+            taui = 1./rate_func_R(i,tor,ueff,c,n,tqt)
+            if taui < 100.:
+                return i-dt
+        return -1
+
+def find_Tb100_O(tini,tmax,dt,tor,ueff,c,n,tqt,rh):
+    if 1./rate_func_O(tini+dt,tor,ueff,c,n,tqt) < 100.:
+        return 0
+    else:
+        for i in np.arange(tini+dt,tmax,dt):
+            taui = 1./rate_func_O(i,tor,ueff,c,n,tqt)
+            if taui < 100.:
+                return i-dt
+        return -1
+
 def rate_func_TRO(temp,tor,ueff,c,n,tqt):
     return 1./tor*np.exp(-1*ueff/temp)+c*np.power(temp,n)+1./tqt
 
@@ -410,21 +470,27 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
                 tb = -2
             elif mech == "TRO":
                 tb = find_Tb_TRO(1.,30000.,0.1,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.)
+                tb100 = find_Tb100_TRO(1.,30000.,0.1,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TRO(1.,300.,0.1,1.,float(tau0),float(Ueff),float(C),float(n),float(tauqt),float(rh)/60.,fixXT,tb,ymax)
             elif mech == "RO":
                 tb = find_Tb_RO(1.,30000.,0.1,float(tau0),float(Ueff),float(C),float(n),tauqt,float(rh)/60.)
+                tb100 = find_Tb100_RO(1.,30000.,0.1,float(tau0),float(Ueff),float(C),float(n),tauqt,float(rh)/60.)
                 data = simula_zfcfc_RO(1.,300.,0.1,1.,float(tau0),float(Ueff),float(C),float(n),tauqt,float(rh)/60.,fixXT,tb,ymax)
             elif mech == "TO":
                 tb = find_Tb_TO(1.,30000.,0.1,float(tau0),float(Ueff),C,n,float(tauqt),float(rh)/60.)
+                tb100 = find_Tb100_TO(1.,30000.,0.1,float(tau0),float(Ueff),C,n,float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TO(1.,300.,0.1,1.,float(tau0),float(Ueff),C,n,float(tauqt),float(rh)/60.,fixXT,tb,ymax)
             elif mech == "TR":
                 tb = find_Tb_TR(1.,30000.,0.1,tau0,Ueff,float(C),float(n),float(tauqt),float(rh)/60.)
+                tb100 = find_Tb100_TR(1.,30000.,0.1,tau0,Ueff,float(C),float(n),float(tauqt),float(rh)/60.)
                 data = simula_zfcfc_TR(1.,300.,0.1,1.,tau0,Ueff,float(C),float(n),float(tauqt),float(rh)/60.,fixXT,tb,ymax)
             elif mech == "R":
                 tb = find_Tb_R(1.,30000.,0.1,tau0,Ueff,float(C),float(n),tauqt,float(rh)/60.)
+                tb100 = find_Tb100_R(1.,30000.,0.1,tau0,Ueff,float(C),float(n),tauqt,float(rh)/60.)
                 data = simula_zfcfc_R(1.,300.,0.1,1.,tau0,Ueff,float(C),float(n),tauqt,float(rh)/60.,fixXT,tb,ymax)
             elif mech == "O":
                 tb = find_Tb_O(1.,30000.,0.1,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.)
+                tb100 = find_Tb100_O(1.,30000.,0.1,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.)
                 data = simula_zfcfc_O(1.,300.,0.1,1.,float(tau0),float(Ueff),C,n,tauqt,float(rh)/60.,fixXT,tb,ymax)
             if tb == 0:
                 st.write(r"$T_{B-ZFC/FC}$"+" < 1.1 K")
@@ -437,6 +503,12 @@ def main_page(submitted: bool, tau0: float, Ueff: float, C: float, n: float, tau
                 data = []
             else:
                 st.write(r"$T_{B-ZFC/FC}$"+" = "+"{:5.1f}".format(tb)+" K")
+            if tb100 == 0:
+                st.write(r"$T_{B-100s}$"+" < 1.1 K")
+            elif tb100 == -1:
+                st.write(r"$T_{B-100s}$"+" is not calculated")
+            else:
+                st.write(r"$T_{B-100s}$"+" = "+"{:5.1f}".format(tb100)+" K")
             data1 = "T X_FC X_ZFC\n"
             if len(data) != 0:
                 for i in range(len(data[0])):
