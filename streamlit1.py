@@ -14,9 +14,9 @@ mpl.use("agg")
 apptitle = 'TB-ZFC/FC'
 
 st.set_page_config(page_title=apptitle, page_icon=":magnet:")
-st.title(r'$T_{B-ZFC/FC}$'+ ' calculation according to: "Determining the Zero-Field Cooling/ Field Cooling')
-st.title('Blocking Temperature from AC-Susceptibility data for Single-Molecule Magnets"')
-st.title('Inorg. Chem. Front. 2025 (DOI:10.1039/D4QI03259D))
+st.title(r'$T_{B-ZFC/FC}$'+ ' calculation according to: "Determining the Zero-Field Cooling/ Field Cooling'+
+'Blocking Temperature from AC-Susceptibility data for Single-Molecule Magnets"'+
+'Inorg. Chem. Front. 2025 (DOI:10.1039/D4QI03259D)')
 st.write("with "+r"$\tau^{-1}=exp(-U_{eff}/k_{B}T)/\tau_{0}+CT^n+1/\tau_{QT}$")
 
 def simula_zfcfc_TRO(tini,tmax,dt,c1p,tor0,ueff0,c0,n0,tqt0,rh,fijo0,tb,ymax):
